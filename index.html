@@ -1,206 +1,127 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>EMRN — Apple Watch Raffle</title>
-    <meta name="description" content="Enter the EMRN client Apple Watch raffle by submitting your email and account number." />
-    <meta name="theme-color" content="#d24c43" />
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
+<!-- EMRN – Apple Watch Raffle (embed block) -->
+<div class="emrn-raffle" data-formspree="xyzlybkl">
+  <style>
+    .emrn-raffle{--brand:#d24c43;--text:#1f2937;--muted:#64748b;--bg:#fff;--card:#fff}
+    .emrn-raffle{font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;color:var(--text)}
+    .emrn-wrap{max-width:1100px;margin:0 auto;padding:24px}
+    .emrn-hero{display:grid;grid-template-columns:1fr;gap:28px;align-items:center}
+    @media (min-width:992px){.emrn-hero{grid-template-columns:1fr 1fr}}
+    .emrn-pill{display:inline-flex;align-items:center;gap:8px;background:#fee2e2;color:#b91c1c;font-weight:600;font-size:12px;border-radius:999px;padding:6px 10px}
+    .emrn-title{font-size:40px;line-height:1.1;margin:12px 0 0 0;font-weight:700}
+    @media (min-width:768px){.emrn-title{font-size:54px}}
+    .emrn-title .brand{color:var(--brand)}
+    .emrn-list{margin:18px 0 0 0;padding:0;list-style:none}
+    .emrn-list li{display:flex;gap:10px;margin:8px 0;color:#334155;font-size:14px}
+    .emrn-imgwrap{display:flex;justify-content:center}
+    .emrn-img{max-width:420px;width:100%;border-radius:16px;box-shadow:0 10px 25px rgba(0,0,0,.08)}
+    .emrn-card{max-width:680px;background:var(--card);border:1px solid #e5e7eb;border-radius:16px;box-shadow:0 10px 25px rgba(0,0,0,.08);padding:24px}
+    .emrn-form h3{margin:0 0 6px 0;font-size:20px;font-weight:700;color:var(--brand)}
+    .emrn-help{margin:0 0 18px 0;color:var(--muted);font-size:13px}
+    .emrn-grid{display:grid;grid-template-columns:1fr;gap:16px}
+    @media (min-width:768px){.emrn-grid{grid-template-columns:1fr 1fr}}
+    .emrn-label{display:block;margin:0 0 6px 0;font-size:13px;color:#334155}
+    .emrn-input{width:100%;border:1px solid #cbd5e1;border-radius:12px;padding:12px 14px;font-size:16px}
+    .emrn-input:focus{outline:3px solid rgba(210,76,67,.25);border-color:var(--brand)}
+    .emrn-btn{background:var(--brand);color:#fff;border:none;border-radius:12px;padding:12px 18px;font-weight:700;cursor:pointer}
+    .emrn-btn:hover{background:#c63a33}
+    .emrn-msg{margin-top:12px;font-size:14px;display:none}
+    .emrn-msg.ok{color:#047857}.emrn-msg.err{color:#b91c1c}
+    .emrn-fallback{display:none;max-width:420px;width:100%}
+  </style>
 
-    <style>
-      html, body { font-family: 'Inter', sans-serif; }
-      .bg-animated {
-        background: radial-gradient(900px 400px at 10% 10%, rgba(210,76,67,.1), transparent 60%),
-                    radial-gradient(900px 500px at 90% 20%, rgba(98,98,98,.1), transparent 60%),
-                    linear-gradient(180deg, #fafafa 0%, #ffffff 100%);
-      }
-      .hp { position:absolute !important; left:-10000px !important; top:auto !important; width:1px !important; height:1px !important; overflow:hidden; }
-      .focus-ring { outline: none; box-shadow: 0 0 0 3px rgba(210,76,67,.35); }
-      .floaty { animation: floaty 6s ease-in-out infinite; }
-      @keyframes floaty { 0% { transform: translateY(0px); } 50% { transform: translateY(-6px); } 100% { transform: translateY(0px); } }
-      .pulse-wrap { position: relative; }
-      .pulse-wrap svg path { stroke: #ef4444; stroke-width: 2.5; fill: none; stroke-linecap: round; stroke-dasharray: 6 10; animation: dash 3.2s linear infinite; filter: drop-shadow(0 1px 0 rgba(239,68,68,.25)); }
-      .pulse-dot { fill: #ef4444; transform-origin: center; animation: beat 1.6s ease-in-out infinite; }
-      @keyframes dash { to { stroke-dashoffset: -260; } }
-      @keyframes beat { 0% { transform: scale(1); } 25% { transform: scale(1.25); } 40% { transform: scale(1); } 60% { transform: scale(1.18); } 100% { transform: scale(1); } }
-    </style>
-  </head>
-  <body class="min-h-screen bg-animated text-slate-800">
-
-    <!-- Header with GitHub-hosted Logo -->
-    <header class="max-w-6xl mx-auto px-6 py-6 flex items-center justify-between">
-      <img src="https://github.com/joshemrn/raffle1/blob/main/EMRN%20logo%20png.png?raw=true" alt="EMRN Logo" class="h-14 w-auto" />
-      <a href="#rules" class="text-sm font-medium text-red-600 hover:text-red-700">Rules & Privacy</a>
-    </header>
-
-    <!-- Heartbeat underline -->
-    <div class="max-w-6xl mx-auto px-6 -mt-2 mb-6 pulse-wrap">
-      <svg viewBox="0 0 700 40" class="w-full h-8" aria-hidden="true">
-        <path d="M0 20 H120 l18 -10 12 20 14 -10 H220 H280 l20 -12 12 24 16 -12 H380 H460 l20 -10 12 20 14 -10 H560 H700" />
-        <circle class="pulse-dot" cx="680" cy="20" r="3.5" />
-      </svg>
-    </div>
-
-    <!-- Hero -->
-    <section class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
-      <!-- Left: copy -->
-      <div class="order-2 md:order-1">
-        <div class="inline-flex items-center gap-2 rounded-full bg-red-50 text-red-700 px-3 py-1 text-xs font-semibold w-fit">
-          <span aria-hidden>★</span> Client Appreciation Raffle
-        </div>
-        <h1 class="mt-4 text-4xl md:text-5xl font-semibold leading-tight">
-          Win an <span class="text-red-600">Apple&nbsp;Watch</span>
-        </h1>
-        <p class="mt-4 text-slate-600 text-lg leading-relaxed">
+  <div class="emrn-wrap">
+    <!-- HERO -->
+    <div class="emrn-hero">
+      <div>
+        <span class="emrn-pill">★ Client Appreciation Raffle</span>
+        <h1 class="emrn-title">Win an <span class="brand">Apple&nbsp;Watch</span></h1>
+        <p style="margin:12px 0 0;color:#475569;font-size:18px">
           Enter the draw by confirming your contact details — just your email and account number.
         </p>
-        <ul class="mt-6 space-y-2 text-slate-700 text-sm">
-          <li class="flex gap-3"><span class="mt-1">✅</span><span>One entry per account. Duplicate entries will be merged.</span></li>
-          <li class="flex gap-3"><span class="mt-1">✅</span><span>No purchase necessary. Odds depend on total entries.</span></li>
-          <li class="flex gap-3"><span class="mt-1">✅</span><span>Winner contacted by email or phone.</span></li>
+        <p style="margin:4px 0 0;color:#b91c1c;font-weight:600;">This raffle is by invitation only.</p>
+        <ul class="emrn-list">
+          <li>✅ One entry per account. Duplicate entries will be merged.</li>
+          <li>✅ No purchase necessary. Odds depend on total entries.</li>
+          <li>✅ Winner contacted by email or phone.</li>
         </ul>
       </div>
 
-      <!-- Right: image -->
-      <div class="order-1 md:order-2 flex md:justify-end justify-center">
-        <div class="relative w-full max-w-md">
-          <img id="watchImg" src="https://cdn.pixabay.com/photo/2020/12/03/12/22/apple-watch-5799473_1280.png" alt="Apple Watch" class="w-full h-auto drop-shadow-2xl rounded-xl" />
-          <!-- Fallback in case the external image fails -->
-          <div id="watchFallback" class="hidden">
-            <svg viewBox="0 0 420 480" class="w-full drop-shadow-2xl" role="img" aria-label="Stylized smart watch">
-              <defs>
-                <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
-                  <stop offset="0%" stop-color="#0ea5e9"/>
-                  <stop offset="100%" stop-color="#6366f1"/>
-                </linearGradient>
-                <linearGradient id="g2" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="0%" stop-color="#111827"/>
-                  <stop offset="100%" stop-color="#1f2937"/>
-                </linearGradient>
-              </defs>
-              <rect x="175" y="10" width="70" height="120" rx="20" fill="url(#g1)" />
-              <rect x="175" y="350" width="70" height="120" rx="20" fill="url(#g1)" />
-              <rect x="95" y="120" width="230" height="240" rx="48" fill="#000" opacity=".08" />
-              <rect x="100" y="110" width="220" height="250" rx="44" fill="#111827" />
-              <rect x="115" y="125" width="190" height="220" rx="28" fill="url(#g2)" />
-              <circle cx="325" cy="235" r="16" fill="#e5e7eb" />
-              <g fill="#a5b4fc">
-                <circle cx="210" cy="190" r="5"/>
-                <circle cx="240" cy="190" r="5"/>
-                <circle cx="210" cy="220" r="5"/>
-                <circle cx="240" cy="220" r="5"/>
-                <circle cx="225" cy="250" r="5"/>
-              </g>
-            </svg>
-          </div>
-        </div>
+      <div class="emrn-imgwrap">
+        <img class="emrn-img" id="emrn-watch"
+          src="https://cdn.pixabay.com/photo/2020/12/03/12/22/apple-watch-5799473_1280.png"
+          alt="Apple Watch">
+        <svg class="emrn-fallback" id="emrn-watch-fb" viewBox="0 0 420 480" role="img" aria-label="Stylized smart watch">
+          <defs>
+            <linearGradient id="g2" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#111827"/><stop offset="100%" stop-color="#1f2937"/>
+            </linearGradient>
+          </defs>
+          <rect x="175" y="10" width="70" height="120" rx="20" fill="#e5e7eb" opacity=".6" />
+          <rect x="175" y="350" width="70" height="120" rx="20" fill="#e5e7eb" opacity=".6" />
+          <rect x="95" y="120" width="230" height="240" rx="48" fill="#000" opacity=".08" />
+          <rect x="100" y="110" width="220" height="250" rx="44" fill="#111827" />
+          <rect x="115" y="125" width="190" height="220" rx="28" fill="url(#g2)" />
+          <circle cx="325" cy="235" r="16" fill="#e5e7eb" />
+        </svg>
       </div>
-    </section>
+    </div>
 
-    <!-- Form Card -->
-    <main class="max-w-4xl mx-auto px-6 mt-6">
-      <form id="raffleForm" class="bg-white/90 rounded-2xl shadow-2xl border border-slate-200 p-6 md:p-8" novalidate>
-        <div class="mb-6">
-          <h2 class="text-xl font-semibold text-red-700">Enter the Raffle</h2>
-          <p class="text-slate-500 text-sm">Only two fields. Marked <span class="text-rose-600">*</span> are required.</p>
-        </div>
+    <!-- FORM -->
+    <div style="margin-top:36px" class="emrn-card">
+      <form class="emrn-form" id="emrn-form" novalidate>
+        <h3>Enter the Raffle</h3>
+        <p class="emrn-help">Only two fields. <span style="color:var(--brand)">*</span> required.</p>
 
-        <div class="hp">
-          <label>Do not fill this field</label>
-          <input type="text" name="website_url" tabindex="-1" autocomplete="off" />
-        </div>
+        <input type="text" name="website_url" style="position:absolute;left:-9999px" tabindex="-1" aria-hidden="true">
 
-        <div class="grid md:grid-cols-2 gap-4">
+        <div class="emrn-grid">
           <div>
-            <label for="email" class="block text-sm font-medium text-slate-700 mb-1">Email <span class="text-rose-600">*</span></label>
-            <input type="email" id="email" name="email" required class="w-full rounded-xl border border-slate-300 px-4 py-3 focus:border-red-600 focus:focus-ring" placeholder="you@company.com" />
+            <label class="emrn-label" for="emrn-email">Email <span style="color:var(--brand)">*</span></label>
+            <input class="emrn-input" type="email" id="emrn-email" name="email" required placeholder="you@company.com">
           </div>
           <div>
-            <label for="account_number" class="block text-sm font-medium text-slate-700 mb-1">Account Number <span class="text-rose-600">*</span></label>
-            <input type="text" id="account_number" name="account_number" required class="w-full rounded-xl border border-slate-300 px-4 py-3 focus:border-red-600 focus:focus-ring" placeholder="e.g. 123456" />
+            <label class="emrn-label" for="emrn-acct">Account Number <span style="color:var(--brand)">*</span></label>
+            <input class="emrn-input" type="text" id="emrn-acct" name="account_number" required placeholder="e.g. 123456">
           </div>
         </div>
 
-        <div class="mt-6 flex items-center gap-3">
-          <button type="submit" class="inline-flex items-center justify-center rounded-xl bg-red-600 px-5 py-3 text-white font-semibold hover:bg-red-700 active:bg-red-800 transition focus:outline-none focus:ring-4 focus:ring-red-300">
-            Submit Entry
-          </button>
-          <p id="formHelper" class="text-sm text-slate-500">You’ll see a confirmation here after submitting.</p>
+        <div style="margin-top:16px;display:flex;align-items:center;gap:12px">
+          <button class="emrn-btn" type="submit">Submit Entry</button>
+          <span id="emrn-helper" style="color:#64748b;font-size:14px">You’ll see a confirmation here after submitting.</span>
         </div>
 
-        <p id="formError" class="hidden mt-4 text-sm text-rose-600 font-medium">Something went wrong. Please try again.</p>
-        <p id="formSuccess" class="hidden mt-4 text-sm text-emerald-700 font-medium">Thanks! Your raffle entry was submitted.</p>
+        <div id="emrn-ok"  class="emrn-msg ok">Thanks! Your raffle entry was submitted.</div>
+        <div id="emrn-err" class="emrn-msg err">Something went wrong. Please try again.</div>
 
-        <input type="hidden" name="raffle_name" value="EMRN Apple Watch Raffle" />
-        <input type="hidden" name="source" value="github-pages" />
+        <input type="hidden" name="raffle_name" value="EMRN Apple Watch Raffle">
+        <input type="hidden" name="source" value="bigcommerce-embed">
       </form>
-    </main>
+    </div>
+  </div>
 
-    <!-- Rules -->
-    <section id="rules" class="max-w-4xl mx-auto px-6 py-10">
-      <div class="rounded-2xl border border-slate-200 bg-white p-6">
-        <h3 class="text-lg font-semibold mb-2 text-red-700">Official Rules & Privacy</h3>
-        <p class="text-sm text-slate-600 leading-relaxed">
-          Open to EMRN clients in Canada who provide valid business contact information. One (1) winner will be randomly selected after the entry deadline and notified by email or phone. Prize: one (1) Apple Watch (model subject to availability). No cash alternative. By entering, you consent to EMRN using your details to administer this raffle and maintain accurate client contact records. We do not sell your data. Entries suspected of automation or fraud will be discarded.
-        </p>
-      </div>
-    </section>
-
-    <footer class="border-t border-slate-200">
-      <div class="max-w-6xl mx-auto px-6 py-8 text-sm text-slate-500 flex flex-col md:flex-row items-center justify-between gap-4">
-        <p>© <span id="y"></span> EMRN — Équipement Médical Rive Nord</p>
-        <p>Questions? <a href="mailto:info@emrn.ca" class="text-red-700 hover:text-red-900 font-medium">info@emrn.ca</a></p>
-      </div>
-    </footer>
-
-    <script>
-      document.getElementById('y').textContent = new Date().getFullYear();
-      const FORM_ID = 'xyzlybkl';
-      const endpoint = `https://formspree.io/f/${FORM_ID}`;
-      const form = document.getElementById('raffleForm');
-      const successEl = document.getElementById('formSuccess');
-      const errorEl = document.getElementById('formError');
-      const helperEl = document.getElementById('formHelper');
-
-      form.addEventListener('submit', async (e) => {
+  <script>
+    (function(){
+      var img=document.getElementById('emrn-watch');
+      var fb=document.getElementById('emrn-watch-fb');
+      if(img){ img.addEventListener('error',()=>{img.style.display='none';fb.style.display='block';}); }
+      var form=document.getElementById('emrn-form');
+      var ok=document.getElementById('emrn-ok');
+      var err=document.getElementById('emrn-err');
+      var help=document.getElementById('emrn-helper');
+      var root=document.querySelector('.emrn-raffle');
+      var FORM_ID=(root&&root.getAttribute('data-formspree'))||'xyzlybkl';
+      var url='https://formspree.io/f/'+FORM_ID;
+      form.addEventListener('submit',async e=>{
         e.preventDefault();
-        successEl.classList.add('hidden');
-        errorEl.classList.add('hidden');
-        const hp = form.querySelector('[name="website_url"]').value.trim();
-        if (hp) { successEl.classList.remove('hidden'); form.reset(); return; }
-        helperEl.textContent = 'Submitting…';
-        try {
-          const res = await fetch(endpoint, {
-            method: 'POST',
-            headers: { 'Accept': 'application/json' },
-            body: new FormData(form)
-          });
-          if (res.ok) {
-            successEl.classList.remove('hidden');
-            helperEl.textContent = 'Done! You can close this page.';
-            form.reset();
-          } else {
-            errorEl.classList.remove('hidden');
-            helperEl.textContent = 'Please review and try again.';
-          }
-        } catch (err) {
-          errorEl.classList.remove('hidden');
-          helperEl.textContent = 'Network error. Try again.';
-        }
+        ok.style.display='none';err.style.display='none';help.textContent='Submitting…';
+        var hp=form.querySelector('[name=\"website_url\"]').value.trim();
+        if(hp){ok.style.display='block';form.reset();help.textContent='Done.';return;}
+        try{
+          var res=await fetch(url,{method:'POST',headers:{'Accept':'application/json'},body:new FormData(form)});
+          if(res.ok){ok.style.display='block';help.textContent='Done!';form.reset();}
+          else{err.style.display='block';help.textContent='Please review and try again.';}
+        }catch(_){err.style.display='block';help.textContent='Network error. Try again.';}
       });
-          // If the Apple Watch image fails to load, show the SVG fallback
-      const img = document.getElementById('watchImg');
-      const fb = document.getElementById('watchFallback');
-      if (img) {
-        img.addEventListener('error', () => {
-          img.classList.add('hidden');
-          fb.classList.remove('hidden');
-        });
-      }
-    </script>
-  </body>
-</html>
+    })();
+  </script>
+</div>
