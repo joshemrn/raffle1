@@ -4,87 +4,146 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>EMRN — Apple Watch Raffle</title>
-    <meta name="description" content="Enter the EMRN client raffle for an Apple Watch by submitting your email and account number." />
-    <meta name="theme-color" content="#4F46E5" />
+    <meta name="description" content="Enter the EMRN client Apple Watch raffle by submitting your email and account number." />
+    <meta name="theme-color" content="#d24c43" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+
     <style>
-      .focus-ring { outline: none; box-shadow: 0 0 0 3px rgba(79,70,229,.35); }
-      .hp { position:absolute !important; left:-10000px !important; top:auto !important; width:1px !important; height:1px !important; overflow:hidden; }
+      html, body { font-family: 'Inter', sans-serif; }
       .bg-animated {
-        background: radial-gradient(1200px 600px at 10% 10%, rgba(99,102,241,.15), transparent 60%),
-                    radial-gradient(800px 400px at 90% 20%, rgba(16,185,129,.12), transparent 60%),
-                    radial-gradient(900px 500px at 40% 90%, rgba(59,130,246,.12), transparent 60%),
-                    linear-gradient(180deg, #f8fafc 0%, #ffffff 100%);
+        background: radial-gradient(900px 400px at 10% 10%, rgba(210,76,67,.1), transparent 60%),
+                    radial-gradient(900px 500px at 90% 20%, rgba(98,98,98,.1), transparent 60%),
+                    linear-gradient(180deg, #fafafa 0%, #ffffff 100%);
       }
+      .hp { position:absolute !important; left:-10000px !important; top:auto !important; width:1px !important; height:1px !important; overflow:hidden; }
+      .focus-ring { outline: none; box-shadow: 0 0 0 3px rgba(210,76,67,.35); }
+      .floaty { animation: floaty 6s ease-in-out infinite; }
+      @keyframes floaty { 0% { transform: translateY(0px); } 50% { transform: translateY(-6px); } 100% { transform: translateY(0px); } }
     </style>
   </head>
   <body class="min-h-screen bg-animated text-slate-800">
-    <main class="max-w-md mx-auto px-6 py-16">
-      <div class="bg-white p-8 rounded-2xl shadow-xl border border-slate-200">
-        <div class="text-center mb-6">
-          <h1 class="text-3xl font-semibold text-indigo-700">Apple Watch Raffle</h1>
-          <p class="text-slate-600 mt-2">Enter your email and account number to participate.</p>
+
+    <!-- Header with Logo -->
+    <header class="max-w-6xl mx-auto px-6 py-6 flex items-center justify-between">
+      <img src="https://raw.githubusercontent.com/joshemrn/raffle1/main/EMRN%20logo%20png.png" alt="EMRN Logo" class="h-14 w-auto" />
+      <a href="#rules" class="text-sm font-medium text-red-600 hover:text-red-700">Rules & Privacy</a>
+    </header>
+
+    <!-- Hero -->
+    <section class="max-w-6xl mx-auto px-6 grid lg:grid-cols-2 gap-10 items-center">
+      <div>
+        <div class="inline-flex items-center gap-2 rounded-full bg-red-50 text-red-700 px-3 py-1 text-xs font-semibold w-fit">
+          <span aria-hidden>★</span> Client Appreciation Raffle
+        </div>
+        <h1 class="mt-4 text-4xl md:text-5xl font-semibold leading-tight">
+          Win an <span class="text-red-600">Apple&nbsp;Watch</span>
+        </h1>
+        <p class="mt-4 text-slate-600 text-lg leading-relaxed">
+          Enter the draw by confirming your contact details — just your email and account number.
+        </p>
+        <ul class="mt-6 space-y-2 text-slate-700 text-sm">
+          <li class="flex gap-3"><span class="mt-1">✅</span><span>One entry per account. Duplicate entries will be merged.</span></li>
+          <li class="flex gap-3"><span class="mt-1">✅</span><span>No purchase necessary. Odds depend on total entries.</span></li>
+          <li class="flex gap-3"><span class="mt-1">✅</span><span>Winner contacted by email or phone.</span></li>
+        </ul>
+      </div>
+      <div class="relative floaty">
+        <img src="https://cdn.pixabay.com/photo/2020/12/03/12/22/apple-watch-5799473_1280.png" alt="Apple Watch" class="w-full max-w-sm mx-auto drop-shadow-2xl rounded-xl" />
+      </div>
+    </section>
+
+    <!-- Form Card -->
+    <main class="max-w-4xl mx-auto px-6 mt-6">
+      <form id="raffleForm" class="bg-white/90 rounded-2xl shadow-2xl border border-slate-200 p-6 md:p-8" novalidate>
+        <div class="mb-6">
+          <h2 class="text-xl font-semibold text-red-700">Enter the Raffle</h2>
+          <p class="text-slate-500 text-sm">Only two fields. Marked <span class="text-rose-600">*</span> are required.</p>
         </div>
 
-        <form id="raffleForm" novalidate>
-          <div class="hp">
-            <label>Do not fill this field</label>
-            <input type="text" name="website_url" tabindex="-1" autocomplete="off" />
-          </div>
+        <div class="hp">
+          <label>Do not fill this field</label>
+          <input type="text" name="website_url" tabindex="-1" autocomplete="off" />
+        </div>
 
-          <div class="mb-4">
+        <div class="grid md:grid-cols-2 gap-4">
+          <div>
             <label for="email" class="block text-sm font-medium text-slate-700 mb-1">Email <span class="text-rose-600">*</span></label>
-            <input type="email" id="email" name="email" required class="w-full rounded-xl border border-slate-300 px-4 py-3 focus:border-indigo-600 focus:focus-ring" placeholder="you@company.com" />
+            <input type="email" id="email" name="email" required class="w-full rounded-xl border border-slate-300 px-4 py-3 focus:border-red-600 focus:focus-ring" placeholder="you@company.com" />
           </div>
-
-          <div class="mb-6">
+          <div>
             <label for="account_number" class="block text-sm font-medium text-slate-700 mb-1">Account Number <span class="text-rose-600">*</span></label>
-            <input type="text" id="account_number" name="account_number" required class="w-full rounded-xl border border-slate-300 px-4 py-3 focus:border-indigo-600 focus:focus-ring" placeholder="e.g. 123456" />
+            <input type="text" id="account_number" name="account_number" required class="w-full rounded-xl border border-slate-300 px-4 py-3 focus:border-red-600 focus:focus-ring" placeholder="e.g. 123456" />
           </div>
+        </div>
 
-          <button type="submit" class="w-full bg-indigo-600 text-white font-semibold py-3 rounded-xl hover:bg-indigo-700 transition">Submit Entry</button>
+        <div class="mt-6 flex items-center gap-3">
+          <button type="submit" class="inline-flex items-center justify-center rounded-xl bg-red-600 px-5 py-3 text-white font-semibold hover:bg-red-700 active:bg-red-800 transition focus:outline-none focus:ring-4 focus:ring-red-300">
+            Submit Entry
+          </button>
+          <p id="formHelper" class="text-sm text-slate-500">You’ll see a confirmation here after submitting.</p>
+        </div>
 
-          <p id="formSuccess" class="hidden mt-4 text-sm text-emerald-700 font-medium text-center">Thanks! Your raffle entry was submitted.</p>
-          <p id="formError" class="hidden mt-4 text-sm text-rose-600 font-medium text-center">Something went wrong. Please try again.</p>
-        </form>
-      </div>
+        <p id="formError" class="hidden mt-4 text-sm text-rose-600 font-medium">Something went wrong. Please try again.</p>
+        <p id="formSuccess" class="hidden mt-4 text-sm text-emerald-700 font-medium">Thanks! Your raffle entry was submitted.</p>
+
+        <input type="hidden" name="raffle_name" value="EMRN Apple Watch Raffle" />
+        <input type="hidden" name="source" value="github-pages" />
+      </form>
     </main>
 
-    <footer class="text-center text-slate-500 text-sm py-6">
-      © <span id="y"></span> EMRN — Équipement Médical Rive Nord
+    <!-- Rules -->
+    <section id="rules" class="max-w-4xl mx-auto px-6 py-10">
+      <div class="rounded-2xl border border-slate-200 bg-white p-6">
+        <h3 class="text-lg font-semibold mb-2 text-red-700">Official Rules & Privacy</h3>
+        <p class="text-sm text-slate-600 leading-relaxed">
+          Open to EMRN clients in Canada who provide valid business contact information. One (1) winner will be randomly selected after the entry deadline and notified by email or phone. Prize: one (1) Apple Watch (model subject to availability). No cash alternative. By entering, you consent to EMRN using your details to administer this raffle and maintain accurate client contact records. We do not sell your data. Entries suspected of automation or fraud will be discarded.
+        </p>
+      </div>
+    </section>
+
+    <footer class="border-t border-slate-200">
+      <div class="max-w-6xl mx-auto px-6 py-8 text-sm text-slate-500 flex flex-col md:flex-row items-center justify-between gap-4">
+        <p>© <span id="y"></span> EMRN — Équipement Médical Rive Nord</p>
+        <p>Questions? <a href="mailto:info@emrn.ca" class="text-red-700 hover:text-red-900 font-medium">info@emrn.ca</a></p>
+      </div>
     </footer>
 
     <script>
       document.getElementById('y').textContent = new Date().getFullYear();
-      const FORM_ID = 'xyzlybkl'; // Replace with your Formspree form ID
+      const FORM_ID = 'xyzlybkl';
       const endpoint = `https://formspree.io/f/${FORM_ID}`;
       const form = document.getElementById('raffleForm');
       const successEl = document.getElementById('formSuccess');
       const errorEl = document.getElementById('formError');
+      const helperEl = document.getElementById('formHelper');
 
       form.addEventListener('submit', async (e) => {
         e.preventDefault();
         successEl.classList.add('hidden');
         errorEl.classList.add('hidden');
-
         const hp = form.querySelector('[name="website_url"]').value.trim();
-        if (hp) return;
-
-        const formData = new FormData(form);
+        if (hp) { successEl.classList.remove('hidden'); form.reset(); return; }
+        helperEl.textContent = 'Submitting…';
         try {
           const res = await fetch(endpoint, {
             method: 'POST',
             headers: { 'Accept': 'application/json' },
-            body: formData
+            body: new FormData(form)
           });
           if (res.ok) {
             successEl.classList.remove('hidden');
+            helperEl.textContent = 'Done! You can close this page.';
             form.reset();
           } else {
             errorEl.classList.remove('hidden');
+            helperEl.textContent = 'Please review and try again.';
           }
         } catch (err) {
           errorEl.classList.remove('hidden');
+          helperEl.textContent = 'Network error. Try again.';
         }
       });
     </script>
