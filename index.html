@@ -22,15 +22,28 @@
       .focus-ring { outline: none; box-shadow: 0 0 0 3px rgba(210,76,67,.35); }
       .floaty { animation: floaty 6s ease-in-out infinite; }
       @keyframes floaty { 0% { transform: translateY(0px); } 50% { transform: translateY(-6px); } 100% { transform: translateY(0px); } }
+      .pulse-wrap { position: relative; }
+      .pulse-wrap svg path { stroke: #ef4444; stroke-width: 2.5; fill: none; stroke-linecap: round; stroke-dasharray: 6 10; animation: dash 3.2s linear infinite; filter: drop-shadow(0 1px 0 rgba(239,68,68,.25)); }
+      .pulse-dot { fill: #ef4444; transform-origin: center; animation: beat 1.6s ease-in-out infinite; }
+      @keyframes dash { to { stroke-dashoffset: -260; } }
+      @keyframes beat { 0% { transform: scale(1); } 25% { transform: scale(1.25); } 40% { transform: scale(1); } 60% { transform: scale(1.18); } 100% { transform: scale(1); } }
     </style>
   </head>
   <body class="min-h-screen bg-animated text-slate-800">
 
-    <!-- Header with Logo -->
+    <!-- Header with GitHub-hosted Logo -->
     <header class="max-w-6xl mx-auto px-6 py-6 flex items-center justify-between">
-      <img src="https://raw.githubusercontent.com/joshemrn/raffle1/main/EMRN%20logo%20png.png" alt="EMRN Logo" class="h-14 w-auto" />
+      <img src="https://github.com/joshemrn/raffle1/blob/main/EMRN%20logo%20png.png?raw=true" alt="EMRN Logo" class="h-14 w-auto" />
       <a href="#rules" class="text-sm font-medium text-red-600 hover:text-red-700">Rules & Privacy</a>
     </header>
+
+    <!-- Heartbeat underline -->
+    <div class="max-w-6xl mx-auto px-6 -mt-2 mb-6 pulse-wrap">
+      <svg viewBox="0 0 700 40" class="w-full h-8" aria-hidden="true">
+        <path d="M0 20 H120 l18 -10 12 20 14 -10 H220 H280 l20 -12 12 24 16 -12 H380 H460 l20 -10 12 20 14 -10 H560 H700" />
+        <circle class="pulse-dot" cx="680" cy="20" r="3.5" />
+      </svg>
+    </div>
 
     <!-- Hero -->
     <section class="max-w-6xl mx-auto px-6 grid lg:grid-cols-2 gap-10 items-center">
